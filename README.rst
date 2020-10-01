@@ -1,5 +1,10 @@
-Subliminal
+Subliminal-sucha
 ==========
+
+This is a fork of Subliminal with [Sucha](https://sucha.caretas.club/)'s API integration, which improves efficacy in score matching with spanish subtitles.
+
+Original README:
+
 Subtitles, faster than your thoughts.
 
 .. image:: https://img.shields.io/pypi/v/subliminal.svg
@@ -50,7 +55,7 @@ Download best subtitles in French and English for videos less than two weeks old
 .. code:: python
 
     #!/usr/bin/env python
-    
+
     from datetime import timedelta
 
     from babelfish import Language
