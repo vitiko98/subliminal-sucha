@@ -75,6 +75,7 @@ setup(name='subliminal',
               'opensubtitles = subliminal.providers.opensubtitles:OpenSubtitlesProvider',
               'podnapisi = subliminal.providers.podnapisi:PodnapisiProvider',
               'shooter = subliminal.providers.shooter:ShooterProvider',
+              'sucha = subliminal.providers.sucha:SuchaProvider',
               'thesubdb = subliminal.providers.thesubdb:TheSubDBProvider',
               'tvsubtitles = subliminal.providers.tvsubtitles:TVsubtitlesProvider'
           ],
@@ -92,7 +93,8 @@ setup(name='subliminal',
               'tvsubtitles = subliminal.converters.tvsubtitles:TVsubtitlesConverter'
           ],
           'console_scripts': [
-              'subliminal = subliminal.cli:subliminal'
+              'subliminal = subliminal.cli:subliminal',
+              'sucha = subliminal.cli:subliminal'
           ]
       },
       setup_requires=setup_requirements,
