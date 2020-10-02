@@ -44,6 +44,22 @@ class SuchaSubtitle(Subtitle):
         return self.download_link
 
     def get_matches(self, video):
+        if video.resolution and str(video.resolution).lower() in self.filename.lower():
+            self.found_matches.add("resolution")
+        if video.source and video.source.lower() in self.filename.lower():
+            self.found_matches.add("source")
+
+        if video.video_codec:
+            if video.video_codec == "H.264" and "x264" in self.filename.lower():
+                self.found_matches.add("video_codec")
+            elif video.video_codec == "H.265" and "x265" in self.filename.lower():
+                self.found_matches.add("video_codec")
+            elif video.video_codec.lower() in self.filename.lower():
+                self.found_matches.add("video_codec")
+
+        if video.audio_codec:
+            if video.audio_codec.lower().replace(" ", ".") in self.filename.lower():
+                self.found_matches.add("audio_codec")
         return self.found_matches
 
 
@@ -78,7 +94,7 @@ class SuchaProvider(Provider):
             if imdb_id:
                 q = {"query": imdb_id}
             else:
-                q = {"query": video.title, "year": movie_year, "limit": 10}
+                q = {"query": video.title, "year": movie_year}
 
         logger.debug("Searching subtitles: {}".format(q["query"]))
 
@@ -105,34 +121,6 @@ class SuchaProvider(Provider):
                     matches.add("year")
                 if imdb_id:
                     matches.add("imdb_id")
-                if (
-                    video.resolution
-                    and str(video.resolution).lower() in i["pseudo_file"].lower()
-                ):
-                    matches.add("resolution")
-                if video.source and video.source.lower() in i["pseudo_file"].lower():
-                        matches.add("source")
-
-                if video.video_codec:
-                    if (
-                        video.video_codec == "H.264"
-                        and "x264" in i["pseudo_file"].lower()
-                    ):
-                        matches.add("video_codec")
-                    elif (
-                        video.video_codec == "H.265"
-                        and "x265" in i["pseudo_file"].lower()
-                    ):
-                        matches.add("video_codec")
-                    elif video.video_codec.lower() in i["pseudo_file"].lower():
-                        matches.add("video_codec")
-
-                if video.audio_codec:
-                    if (
-                        video.audio_codec.lower().replace(" ", ".")
-                        in i["pseudo_file"].lower()
-                    ):
-                        matches.add("audio_codec")
 
                 subtitles.append(
                     SuchaSubtitle(
