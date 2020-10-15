@@ -191,6 +191,8 @@ class OpenSubtitlesProvider(Provider):
             series_season = int(subtitle_item['SeriesSeason']) if subtitle_item['SeriesSeason'] else None
             series_episode = int(subtitle_item['SeriesEpisode']) if subtitle_item['SeriesEpisode'] else None
             filename = subtitle_item['SubFileName']
+            if ".srt" not in filename:
+                continue
             encoding = subtitle_item.get('SubEncoding') or None
 
             subtitle = self.subtitle_class(language, hearing_impaired, page_link, subtitle_id, matched_by, movie_kind,
