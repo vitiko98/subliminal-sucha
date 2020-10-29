@@ -163,7 +163,7 @@ class SuchaProvider(Provider):
             logger.debug("Identified zip archive")
             archive = zipfile.ZipFile(archive_stream)
         else:
-            raise ProviderError("Unsupported compressed format")
+            raise ValueError("Unsupported compressed format")
         return archive
 
     def get_file(self, archive):
@@ -180,7 +180,7 @@ class SuchaProvider(Provider):
                 continue
             logger.debug("Returning from archive: {}".format(name))
             return archive.read(name)
-        raise ProviderError("Can not find the subtitle in the compressed file")
+        raise ValueError("Can not find the subtitle in the compressed file")
 
     def download_subtitle(self, subtitle):
         logger.info("Downloading subtitle %r", subtitle)
