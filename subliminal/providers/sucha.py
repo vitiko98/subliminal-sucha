@@ -104,6 +104,8 @@ class SuchaProvider(Provider):
         try:
             subtitles = []
             for i in result["results"]:
+                logger.debug(video.audio_codec)
+                logger.debug(video.video_codec)
                 matches = set()
                 logger.debug(i["title"])
                 if video.title.lower() in i["title"].lower():

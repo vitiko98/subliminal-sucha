@@ -369,7 +369,7 @@ def scan_video(path):
     logger.info('Scanning video %r in %r', filename, dirpath)
 
     # guess
-    video = Video.fromguess(path, guessit(path))
+    video = Video.fromguess(path, guessit(path.split("/")[-1]))
 
     # size
     video.size = os.path.getsize(path)
