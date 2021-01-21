@@ -357,7 +357,7 @@ def download(obj, provider, refiner, language, age, directory, encoding, single,
                 if check_video(video, languages=language, age=age, undefined=single):
                     refine(video, episode_refiners=refiner, movie_refiners=refiner,
                            refiner_configs=obj['refiner_configs'],
-                           embedded_subtitles=False, providers=provider, languages=language)
+                           embedded_subtitles=not force, providers=provider, languages=language)
                     videos.append(video)
                 continue
 
