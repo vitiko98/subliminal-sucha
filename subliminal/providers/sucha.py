@@ -111,7 +111,7 @@ class SuchaProvider(Provider):
                     or video.title.lower() in i["alt_title"].lower()
                 ):
                     matches.add("title")
-            except TypeError:
+            except (AttributeError, TypeError):
                 logger.debug("No subtitles found")
                 return []
             if is_episode:
